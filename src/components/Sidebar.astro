@@ -1,15 +1,14 @@
 ---
 import Default from '@astrojs/starlight/components/Sidebar.astro';
 
-const { sidebar } = Astro.locals.starlightRoute;
-const isBlogPage = Astro.url.pathname.startsWith('/blog');
+const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
 ---
 
-{isBlogPage && (
+{!isHomepage && (
 	<div class="sidebar-profile">
 		<div class="sidebar-profile-avatar">BF</div>
 		<div class="sidebar-profile-info">
-			<span class="sidebar-profile-name">Brice Fotzo</span>
+			<a href="/" class="sidebar-profile-name">Brice Fotzo</a>
 			<span class="sidebar-profile-role">Data & Cloud Native Engineer</span>
 		</div>
 		<div class="sidebar-profile-links">
