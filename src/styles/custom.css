@@ -573,6 +573,164 @@ article.preview:has(footer a[href*="/tags/linkedin"]) h2 a::after {
 }
 
 /* ==========================================================
+   SIDEBAR — PROFILE CARD
+   ========================================================== */
+
+.sidebar-profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 1.25rem 1rem;
+	margin-bottom: 1rem;
+	border-radius: 0.75rem;
+	border: 1px solid var(--sl-color-gray-6);
+	background: var(--sl-color-bg-nav);
+}
+
+.sidebar-profile-avatar {
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #667eea, #764ba2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 800;
+	font-size: 1.1rem;
+	color: white;
+	margin-bottom: 0.6rem;
+	flex-shrink: 0;
+}
+
+.sidebar-profile-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	margin-bottom: 0.6rem;
+}
+
+.sidebar-profile-name {
+	font-weight: 700;
+	font-size: var(--sl-text-base);
+	color: var(--sl-color-white);
+}
+
+.sidebar-profile-role {
+	font-size: var(--sl-text-xs);
+	color: var(--sl-color-gray-3);
+}
+
+.sidebar-profile-links {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.sidebar-profile-links a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 0.4rem;
+	border: 1px solid var(--sl-color-gray-5);
+	color: var(--sl-color-gray-3);
+	transition: all 0.2s ease;
+}
+
+.sidebar-profile-links a:hover {
+	color: var(--sl-color-white);
+	border-color: var(--sl-color-gray-3);
+	background: var(--sl-color-gray-6);
+}
+
+/* ==========================================================
+   SIDEBAR — GROUP HEADERS & ITEMS
+   ========================================================== */
+
+/* Sidebar group labels */
+#starlight__sidebar summary .group-label .large {
+	font-size: var(--sl-text-sm) !important;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--sl-color-gray-3) !important;
+	font-weight: 700;
+}
+
+/* Top-level links ("All posts", "RSS") */
+#starlight__sidebar .top-level > li > a.large {
+	font-size: var(--sl-text-sm) !important;
+	font-weight: 600;
+	border-radius: 0.4rem;
+	padding: 0.4em 0.6em;
+	transition: all 0.15s ease;
+}
+
+#starlight__sidebar .top-level > li > a.large:hover {
+	background: var(--sl-color-gray-6);
+}
+
+/* Active/current page link */
+#starlight__sidebar [aria-current='page'] {
+	background-color: var(--sl-color-text-accent) !important;
+	color: var(--sl-color-black) !important;
+	border-radius: 0.4rem !important;
+}
+
+/* Nested links (post titles, tags) */
+#starlight__sidebar ul ul a {
+	font-size: var(--sl-text-xs) !important;
+	padding: 0.25em 0.5em;
+	border-radius: 0.3rem;
+	transition: all 0.15s ease;
+}
+
+#starlight__sidebar ul ul a:hover {
+	background: var(--sl-color-gray-6);
+}
+
+/* Nested list border */
+#starlight__sidebar ul ul li {
+	border-inline-start-color: var(--sl-color-gray-6) !important;
+}
+
+/* Tag items — style as pills */
+#starlight__sidebar details:has(summary .large) ul a[href*="/tags/"] {
+	display: inline-block;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 1rem;
+	padding: 0.15rem 0.55rem !important;
+	margin: 0.1rem 0;
+	font-size: 0.65rem !important;
+}
+
+#starlight__sidebar details:has(summary .large) ul a[href*="/tags/"]:hover {
+	border-color: var(--sl-color-text-accent);
+	color: var(--sl-color-text-accent);
+	background: transparent;
+}
+
+/* LinkedIn tag in sidebar gets brand color */
+#starlight__sidebar a[href*="/tags/linkedin"] {
+	border-color: #0a66c2 !important;
+	color: #0a66c2 !important;
+}
+
+#starlight__sidebar a[href*="/tags/linkedin"]:hover {
+	background: rgba(10, 102, 194, 0.1) !important;
+}
+
+/* RSS link styling */
+#starlight__sidebar a[href*="rss.xml"] {
+	opacity: 0.5;
+	font-size: var(--sl-text-xs) !important;
+}
+
+#starlight__sidebar a[href*="rss.xml"]:hover {
+	opacity: 1;
+}
+
+/* ==========================================================
    RESPONSIVE — BLOG GRID
    ========================================================== */
 
