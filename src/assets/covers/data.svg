@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3443"/>
+      <stop offset="100%" style="stop-color:#34e89e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <g transform="translate(400,170)" opacity="0.25">
+    <ellipse cx="0" cy="-30" rx="70" ry="20" fill="none" stroke="white" stroke-width="3"/>
+    <path d="M-70 -30 L-70 30 C-70 41 -38.7 50 0 50 S70 41 70 50 L70 -30" fill="none" stroke="white" stroke-width="3"/>
+    <path d="M-70 0 C-70 11 -38.7 20 0 20 S70 11 70 0" fill="none" stroke="white" stroke-width="3"/>
+    <path d="M-70 30 C-70 41 -38.7 50 0 50 S70 41 70 30" fill="none" stroke="white" stroke-width="3"/>
+  </g>
+  <text x="400" y="280" text-anchor="middle" fill="white" font-family="system-ui, sans-serif" font-size="28" font-weight="600" opacity="0.9">DATA</text>
+</svg>
