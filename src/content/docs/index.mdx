@@ -3,32 +3,90 @@ title: Brice Fotzo
 description: Blog sur la Data, les Containers, le Cloud Native et le Backend
 template: splash
 hero:
-  tagline: Data · Containers · Cloud Native · Backend
-  actions:
-    - text: Lire le blog
-      link: /blog/
-      icon: right-arrow
-    - text: LinkedIn
-      link: https://www.linkedin.com/in/bricefotzo/
-      icon: external
-      variant: minimal
+  tagline: ""
+  actions: []
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+<div class="homepage">
 
-## Sujets
+<section class="hero-custom">
+  <div class="hero-badge">Blog technique</div>
+  <h1 class="hero-title">
+    <span class="hero-greeting">Hey, moi c'est</span>
+    <span class="hero-name">Brice Fotzo</span>
+  </h1>
+  <p class="hero-subtitle">J'ecris sur la <strong>Data</strong>, les <strong>Containers</strong>, le <strong>Cloud Native</strong> et le <strong>Backend</strong>.<br/>Ici tu trouveras mes articles techniques et mes posts LinkedIn.</p>
+  <div class="hero-actions">
+    <a href="/blog/" class="hero-btn hero-btn-primary"><span>Lire le blog</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="https://www.linkedin.com/in/bricefotzo/" class="hero-btn hero-btn-ghost" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> <span>LinkedIn</span></a>
+  </div>
+</section>
 
-<CardGrid>
-	<Card title="Data" icon="star">
-		Pipelines de données, dbt, Data Lakehouse, ingénierie des données et bonnes pratiques.
-	</Card>
-	<Card title="Containers" icon="rocket">
-		Docker, Kubernetes, optimisation d'images, orchestration et patterns de déploiement.
-	</Card>
-	<Card title="Cloud Native" icon="cloud">
-		GitOps, ArgoCD, service mesh, observabilité et architectures cloud native.
-	</Card>
-	<Card title="Backend" icon="setting">
-		APIs, microservices, bases de données, performance et architecture logicielle.
-	</Card>
-</CardGrid>
+<section class="topics-section">
+  <h2 class="section-title">Ce que je couvre</h2>
+  <div class="topics-grid">
+    <a href="/blog/tags/data/" class="topic-card topic-data">
+      <div class="topic-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <div class="topic-content">
+        <h3>Data</h3>
+        <p>Pipelines, dbt, Lakehouse, Spark, ingenierie des donnees</p>
+      </div>
+    </a>
+    <a href="/blog/tags/containers/" class="topic-card topic-containers">
+      <div class="topic-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="6" y="10" width="4" height="4" rx="0.5"/><rect x="10" y="10" width="4" height="4" rx="0.5"/><rect x="14" y="10" width="4" height="4" rx="0.5"/><rect x="6" y="6" width="4" height="4" rx="0.5"/><rect x="10" y="6" width="4" height="4" rx="0.5"/><rect x="10" y="2" width="4" height="4" rx="0.5"/><path d="M18 10c3 0 5 2 5 4s-1.5 3.5-4 3.5H2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="topic-content">
+        <h3>Containers</h3>
+        <p>Docker, Kubernetes, optimisation d'images, orchestration</p>
+      </div>
+    </a>
+    <a href="/blog/tags/cloud-native/" class="topic-card topic-cloud">
+      <div class="topic-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+      </div>
+      <div class="topic-content">
+        <h3>Cloud Native</h3>
+        <p>GitOps, ArgoCD, Istio, observabilite, service mesh</p>
+      </div>
+    </a>
+    <a href="/blog/tags/backend/" class="topic-card topic-backend">
+      <div class="topic-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+      </div>
+      <div class="topic-content">
+        <h3>Backend</h3>
+        <p>APIs, microservices, Go, Python, architecture logicielle</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="numbers-section">
+  <div class="numbers-grid">
+    <div class="number-item">
+      <span class="number-value">50+</span>
+      <span class="number-label">Posts LinkedIn</span>
+    </div>
+    <div class="number-item">
+      <span class="number-value">4</span>
+      <span class="number-label">Domaines d'expertise</span>
+    </div>
+    <div class="number-item">
+      <span class="number-value">100%</span>
+      <span class="number-label">Retours d'experience terrain</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Du LinkedIn au Blog</h2>
+    <p>J'ai capitalise des dizaines de posts LinkedIn sur la tech. Ici, je les rassemble en un seul endroit et j'ecris de nouveaux articles approfondis. Les posts LinkedIn sont accessibles directement — cherche le badge <span class="cta-linkedin-badge">in</span> sur les articles.</p>
+    <a href="/blog/" class="hero-btn hero-btn-primary"><span>Explorer les articles</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+</div>
