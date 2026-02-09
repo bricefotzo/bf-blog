@@ -9,7 +9,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Brice Fotzo',
-			description: 'Blog sur la Data, les Containers, le Cloud Native et le Backend',
+			description: 'Data & Cloud Native Engineer - Portfolio, Projects, Blog',
 			defaultLocale: 'fr',
 			social: [
 				{
@@ -41,12 +41,16 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: 'A propos',
-					items: [{ label: 'Qui suis-je ?', slug: 'about' }],
+					label: 'Portfolio',
+					items: [
+						{ label: 'Projets', slug: 'projects' },
+						{ label: 'Accomplissements', slug: 'accomplishments' },
+						{ label: 'Liens', slug: 'links' },
+					],
 				},
 				{
-					label: 'Projets',
-					items: [{ label: 'Projects', slug: 'projects' }],
+					label: 'A propos',
+					items: [{ label: 'Qui suis-je ?', slug: 'about' }],
 				},
 			],
 			components: {
