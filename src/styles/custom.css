@@ -340,22 +340,125 @@
 		gap: 0.75rem;
 	}
 
-	.number-item {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		text-align: left;
-		padding: 1rem 1.25rem;
-	}
+.number-item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	text-align: left;
+	padding: 1rem 1.25rem;
+}
 
 	.number-value {
 		font-size: 1.6rem;
 		margin-bottom: 0;
 	}
 
-	.cta-box {
-		padding: 1.5rem;
-	}
+.cta-box {
+	padding: 1.5rem;
+}
+
+/* ==========================================================
+   HOMEPAGE — FEATURED LINKS
+   ========================================================== */
+
+.featured-links {
+	margin: 2.5rem 0;
+}
+
+.featured-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.featured-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+	padding: 1rem 1.1rem;
+	border-radius: 0.8rem;
+	border: 1px solid var(--sl-color-gray-6);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+	text-decoration: none;
+	color: var(--sl-color-white);
+	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featured-card:hover {
+	transform: translateY(-3px);
+	border-color: var(--sl-color-text-accent);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.featured-title {
+	font-weight: 700;
+	font-size: var(--sl-text-base);
+}
+
+.featured-desc {
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-3);
+}
+
+.featured-meta {
+	font-size: 0.65rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--sl-color-text-accent);
+	font-weight: 700;
+}
+
+/* ==========================================================
+   PROJECTS PAGE
+   ========================================================== */
+
+.projects-section {
+	margin: 1.5rem 0 2.25rem;
+}
+
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+	margin-top: 0.8rem;
+}
+
+.project-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+	padding: 1rem 1.1rem;
+	border-radius: 0.85rem;
+	border: 1px solid var(--sl-color-gray-6);
+	background: var(--sl-color-bg-nav);
+	text-decoration: none;
+	color: var(--sl-color-white);
+	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+	transform: translateY(-3px);
+	border-color: var(--sl-color-text-accent);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.project-title {
+	font-weight: 700;
+	font-size: var(--sl-text-base);
+}
+
+.project-desc {
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-3);
+}
+
+.project-meta {
+	font-size: 0.65rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--sl-color-text-accent);
+	font-weight: 700;
+}
 }
 
 /* ==========================================================
@@ -364,7 +467,7 @@
 
 div.posts {
 	display: grid !important;
-	grid-template-columns: repeat(3, 1fr) !important;
+	grid-template-columns: 1fr !important;
 	gap: 1.5rem !important;
 }
 
@@ -394,43 +497,19 @@ article.preview:hover {
 }
 
 /* ==========================================================
-   THUMBNAIL / COVER AREA
+   THUMBNAIL / COVER AREA — DISABLED
    ========================================================== */
 
 article.preview > header {
-	display: flex !important;
-	flex-direction: column !important;
+	display: contents !important;
 }
 
-/* Default thumbnail gradient fallback */
 article.preview > header::before {
-	content: '';
-	display: block;
-	height: 160px;
-	order: -2;
-	flex-shrink: 0;
-	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+	display: none !important;
 }
 
-/* Hide gradient when cover exists */
-article.preview:has(figure) > header::before {
-	display: none;
-}
-
-/* Cover image */
 article.preview figure {
-	order: -1 !important;
-	margin: 0 !important;
-	margin-bottom: 0 !important;
-	height: 160px;
-	overflow: hidden;
-	flex-shrink: 0;
-}
-
-article.preview figure img {
-	width: 100% !important;
-	height: 100% !important;
-	object-fit: cover !important;
+	display: none !important;
 }
 
 /* ==========================================================
@@ -461,8 +540,8 @@ article.preview h2 a:hover {
 /* Metadata (date) */
 article.preview .metadata {
 	order: 1;
-	padding: 0 1rem;
-	font-size: var(--sl-text-xs) !important;
+	padding: 0 1rem ;
+	font-size: 0.6rem !important;
 }
 
 article.preview .metadata .authors {
@@ -471,6 +550,7 @@ article.preview .metadata .authors {
 
 article.preview .metadata .dates {
 	color: var(--sl-color-gray-3);
+	font-size: 0.8rem !important;
 }
 
 /* Excerpt */
@@ -492,6 +572,46 @@ article.preview > footer {
 }
 
 /* ==========================================================
+   TAG FILTER (ABOVE POSTS)
+   ========================================================== */
+
+.blog-tag-filter {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 0 0 1rem;
+}
+
+.blog-tag-filter a {
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 999px;
+	padding: 0.15rem 0.6rem 0.2rem;
+	font-size: 0.65rem;
+	color: var(--sl-color-gray-3);
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+}
+
+.blog-tag-filter a:hover {
+	border-color: var(--sl-color-text-accent);
+	color: var(--sl-color-text-accent);
+}
+
+.blog-tag-filter a.active {
+	background: var(--sl-color-text-accent);
+	border-color: var(--sl-color-text-accent);
+	color: var(--sl-color-black);
+	font-weight: 600;
+}
+
+.blog-tag-filter .count {
+	font-size: 0.6rem;
+	opacity: 0.7;
+}
+
+/* ==========================================================
    TAGS STYLING
    ========================================================== */
 
@@ -510,10 +630,7 @@ article.preview footer a:hover {
 	color: var(--sl-color-text-accent);
 }
 
-/* Hide "linkedin" from tag pills */
-article.preview footer a[href*="/tags/linkedin"] {
-	display: none !important;
-}
+/* LinkedIn stays visible in tags like the others */
 
 /* ==========================================================
    LINKEDIN BADGE OVERLAY
@@ -559,17 +676,6 @@ article.preview:has(footer a[href*="/tags/linkedin"]) h2 a::after {
 	color: #0a66c2;
 	font-weight: 600;
 	text-decoration: underline;
-}
-
-/* ==========================================================
-   TAGS INDEX PAGE
-   ========================================================== */
-
-[href*="/tags/linkedin"]:not(article.preview footer a) {
-	background-color: #0a66c2 !important;
-	color: white !important;
-	border-color: #0a66c2 !important;
-	font-weight: 600;
 }
 
 /* ==========================================================
@@ -710,14 +816,9 @@ article.preview:has(footer a[href*="/tags/linkedin"]) h2 a::after {
 	background: transparent;
 }
 
-/* LinkedIn tag in sidebar gets brand color */
-#starlight__sidebar a[href*="/tags/linkedin"] {
-	border-color: #0a66c2 !important;
-	color: #0a66c2 !important;
-}
-
-#starlight__sidebar a[href*="/tags/linkedin"]:hover {
-	background: rgba(10, 102, 194, 0.1) !important;
+/* Hide tag group in sidebar (moved above posts) */
+#starlight__sidebar details:has(a[href*="/tags/"]) {
+	display: none !important;
 }
 
 /* RSS link styling */
@@ -736,7 +837,11 @@ article.preview:has(footer a[href*="/tags/linkedin"]) h2 a::after {
 
 @media (max-width: 1024px) {
 	div.posts {
-		grid-template-columns: repeat(2, 1fr) !important;
+		grid-template-columns: 1fr !important;
+	}
+
+	.featured-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 
@@ -748,5 +853,10 @@ article.preview:has(footer a[href*="/tags/linkedin"]) h2 a::after {
 	article.preview > header::before,
 	article.preview figure {
 		height: 140px;
+	}
+
+	.featured-grid,
+	.projects-grid {
+		grid-template-columns: 1fr;
 	}
 }

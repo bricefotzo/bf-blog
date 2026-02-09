@@ -2,14 +2,15 @@
 import Default from '@astrojs/starlight/components/Head.astro';
 
 const { entry } = Astro.locals.starlightRoute;
-const linkedinUrl = (entry.data as Record<string, unknown>).linkedinUrl as string | undefined;
+const data = entry.data as Record<string, unknown>;
+const externalUrl = (data.externalUrl as string | undefined) ?? (data.linkedinUrl as string | undefined);
 ---
 
 <Default><slot /></Default>
 
-{linkedinUrl && (
-	<meta http-equiv="refresh" content={`0;url=${linkedinUrl}`} />
-	<script is:inline define:vars={{ linkedinUrl }}>
-		window.location.replace(linkedinUrl);
+{externalUrl && (
+	<meta http-equiv="refresh" content={`0;url=${externalUrl}`} />
+	<script is:inline define:vars={{ externalUrl }}>
+		window.location.replace(externalUrl);
 	</script>
 )}

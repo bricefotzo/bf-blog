@@ -11,6 +11,7 @@ export const collections = {
 			extend: (context) => {
 				return blogSchema(context).extend({
 					linkedinUrl: z.string().url().optional(),
+					externalUrl: z.string().url().optional(),
 				});
 			},
 		}),

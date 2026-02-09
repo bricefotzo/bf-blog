@@ -44,6 +44,10 @@ export default defineConfig({
 					label: 'A propos',
 					items: [{ label: 'Qui suis-je ?', slug: 'about' }],
 				},
+				{
+					label: 'Projets',
+					items: [{ label: 'Projects', slug: 'projects' }],
+				},
 			],
 			components: {
 				Head: './src/components/Head.astro',
