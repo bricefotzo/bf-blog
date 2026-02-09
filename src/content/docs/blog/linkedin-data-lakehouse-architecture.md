@@ -9,6 +9,9 @@ tags:
   - cloud-native
 excerpt: "Le Data Lakehouse combine la flexibilité du Data Lake avec les performances du Data Warehouse. Je décrypte cette architecture avec Delta Lake, Iceberg et Hudi."
 linkedinUrl: "https://www.linkedin.com/posts/bricefotzo_data-lakehouse-architecture-activity-example2"
+cover:
+  image: ../../../assets/covers/data.svg
+  alt: "Data Engineering"
 ---
 
 <div class="linkedin-redirect">

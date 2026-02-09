@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3c72"/>
+      <stop offset="100%" style="stop-color:#2a5298"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <g transform="translate(355,120)" opacity="0.25" fill="none" stroke="white" stroke-width="3">
+    <rect x="0" y="30" width="22" height="20" rx="2"/>
+    <rect x="24" y="30" width="22" height="20" rx="2"/>
+    <rect x="48" y="30" width="22" height="20" rx="2"/>
+    <rect x="72" y="30" width="22" height="20" rx="2"/>
+    <rect x="24" y="8" width="22" height="20" rx="2"/>
+    <rect x="48" y="8" width="22" height="20" rx="2"/>
+    <rect x="48" y="-14" width="22" height="20" rx="2"/>
+    <path d="M94 40 C120 35 130 45 128 55 C126 65 115 70 105 70 L5 70" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="280" text-anchor="middle" fill="white" font-family="system-ui, sans-serif" font-size="28" font-weight="600" opacity="0.9">CONTAINERS</text>
+</svg>

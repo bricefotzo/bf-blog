@@ -9,6 +9,9 @@ tags:
   - docker
 excerpt: "Les multi-stage builds sont la clé pour des images Docker légères en production. Dans ce post LinkedIn, je partage les techniques que j'utilise au quotidien."
 linkedinUrl: "https://www.linkedin.com/posts/bricefotzo_docker-multistage-builds-activity-example1"
+cover:
+  image: ../../../assets/covers/containers.svg
+  alt: "Containers"
 ---
 
 <div class="linkedin-redirect">

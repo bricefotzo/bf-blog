@@ -8,6 +8,9 @@ tags:
   - kubernetes
   - cloud-native
 excerpt: "Le pattern Sidecar est l'un des design patterns les plus utilisés dans Kubernetes. Découvrez quand l'utiliser et comment l'implémenter proprement avec des exemples concrets."
+cover:
+  image: ../../../assets/covers/containers.svg
+  alt: "Containers"
 ---
 
 Le pattern **Sidecar** est un des design patterns fondamentaux de l'écosystème Kubernetes. Il consiste à déployer un conteneur auxiliaire aux côtés du conteneur principal dans un même Pod, afin de lui fournir des fonctionnalités complémentaires sans modifier son code.

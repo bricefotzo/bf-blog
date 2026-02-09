@@ -8,6 +8,9 @@ tags:
   - dbt
   - backend
 excerpt: "dbt (data build tool) a révolutionné la façon dont on transforme les données dans le data warehouse. Voici comment structurer vos projets dbt pour qu'ils restent maintenables à l'échelle."
+cover:
+  image: ../../../assets/covers/data.svg
+  alt: "Data Engineering"
 ---
 
 **dbt** (data build tool) s'est imposé comme l'outil standard pour la transformation de données dans le modern data stack. Mais comme tout outil puissant, une mauvaise utilisation peut vite mener à un projet inmaintenable. Voyons les bonnes pratiques pour structurer un projet dbt proprement.

@@ -9,6 +9,9 @@ tags:
   - kubernetes
 excerpt: "Depuis que j'ai adopté GitOps avec ArgoCD, mes déploiements sont reproductibles, auditables et réversibles. Retour d'expérience sur la mise en place dans un environnement de production."
 linkedinUrl: "https://www.linkedin.com/posts/bricefotzo_gitops-argocd-kubernetes-activity-example3"
+cover:
+  image: ../../../assets/covers/cloud-native.svg
+  alt: "Cloud Native"
 ---
 
 <div class="linkedin-redirect">
