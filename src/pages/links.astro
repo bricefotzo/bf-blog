@@ -1,0 +1,257 @@
+---
+/**
+ * Page "one link" style Linktree : https://bricefotzo.dev/links
+ *
+ * Pour ajouter / compléter un lien : modifier le tableau `links` ci-dessous.
+ * Un lien avec `placeholder: true` s'affiche grisé avec le badge "Bientôt"
+ * et n'est pas cliquable. Remplace `href` puis supprime `placeholder`.
+ */
+
+type Link = {
+	title: string;
+	subtitle?: string;
+	href: string;
+	icon: keyof typeof icons;
+	featured?: boolean;
+	placeholder?: boolean;
+};
+
+const links: Link[] = [
+	{
+		title: 'DevFest : gcloud run compose up',
+		subtitle: "L'article Medium du talk : déployer une stack multi-services GPU sur Cloud Run depuis Docker Compose",
+		href: 'https://medium.com/google-cloud/gcloud-run-compose-up-deploy-a-multi-service-gpu-stack-to-cloud-run-from-docker-compose-77d650b39972',
+		icon: 'medium',
+		featured: true,
+	},
+	{
+		title: 'GCP Release Notes',
+		subtitle: 'Le projet GitHub : parcourir, filtrer et analyser les release notes Google Cloud',
+		href: 'https://github.com/bricefotzo/gcp-release-notes',
+		icon: 'github',
+		featured: true,
+	},
+	{
+		title: 'LinkedIn',
+		subtitle: 'On reste connectés',
+		href: 'https://www.linkedin.com/in/bricefotzo/',
+		icon: 'linkedin',
+	},
+	// --- Placeholders à compléter -------------------------------------------
+	{ title: 'Slides du talk DevFest', subtitle: 'Le support de présentation', href: '#', icon: 'slides', placeholder: true },
+	{ title: 'Replay vidéo du talk', subtitle: 'YouTube', href: '#', icon: 'youtube', placeholder: true },
+	{ title: 'Donner du feedback sur le talk', subtitle: '2 minutes, ça m\'aide beaucoup', href: '#', icon: 'feedback', placeholder: true },
+	{ title: 'Profil speaker', subtitle: 'Sessionize : mes autres talks', href: '#', icon: 'mic', placeholder: true },
+	{ title: 'Newsletter', subtitle: 'Data, Cloud Native & Backend', href: '#', icon: 'mail', placeholder: true },
+	{ title: 'Réserver un échange', subtitle: 'Calendly : 30 min', href: '#', icon: 'calendar', placeholder: true },
+	{ title: 'X / Bluesky', subtitle: 'Fil d\'actu tech', href: '#', icon: 'at', placeholder: true },
+	// --- Liens existants ----------------------------------------------------
+	{ title: 'Mes articles Medium', subtitle: 'bricefotzo.medium.com', href: 'https://bricefotzo.medium.com/', icon: 'medium' },
+	{ title: 'Le blog', subtitle: 'bricefotzo.dev', href: '/', icon: 'globe' },
+	{ title: 'GitHub', subtitle: 'Tous mes projets open source', href: 'https://github.com/bricefotzo', icon: 'github' },
+];
+
+const icons = {
+	linkedin: '<path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>',
+	github: '<path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/>',
+	medium: '<path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>',
+	youtube: '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>',
+	slides: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 4h18v12H3zM12 16v4M8 20h8"/>',
+	feedback: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+	mic: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/>',
+	mail: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6"/>',
+	calendar: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"/>',
+	at: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/>',
+	globe: '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+};
+
+const featured = links.filter((l) => l.featured);
+const others = links.filter((l) => !l.featured);
+const socials = [
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/bricefotzo/', icon: 'linkedin' as const },
+	{ label: 'GitHub', href: 'https://github.com/bricefotzo', icon: 'github' as const },
+	{ label: 'Medium', href: 'https://bricefotzo.medium.com/', icon: 'medium' as const },
+];
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Brice Fotzo · Liens</title>
+		<meta name="description" content="Tous les liens de Brice Fotzo : talk DevFest, projets, articles et réseaux." />
+		<meta property="og:title" content="Brice Fotzo · Liens" />
+		<meta property="og:description" content="Talk DevFest gcloud run compose up, GCP Release Notes, LinkedIn et plus." />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	</head>
+	<body>
+		<main class="wrap">
+			<header class="profile">
+				<div class="avatar" aria-hidden="true">BF</div>
+				<h1>Brice Fotzo</h1>
+				<p class="role">Data &amp; Cloud Native Engineer</p>
+				<p class="bio">Data, Containers, Cloud Native &amp; Backend</p>
+				<nav class="socials" aria-label="Réseaux">
+					{socials.map((s) => (
+						<a href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
+							<svg viewBox="0 0 24 24" fill="currentColor" set:html={icons[s.icon]} />
+						</a>
+					))}
+				</nav>
+			</header>
+
+			<section class="featured" aria-label="À la une">
+				<p class="section-label">Talk DevFest</p>
+				{featured.map((l) => (
+					<a class="card card-featured" href={l.href} target="_blank" rel="noopener">
+						<span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" set:html={icons[l.icon]} /></span>
+						<span class="text">
+							<span class="title">{l.title}</span>
+							{l.subtitle && <span class="subtitle">{l.subtitle}</span>}
+						</span>
+						<span class="arrow" aria-hidden="true">→</span>
+					</a>
+				))}
+			</section>
+
+			<section class="list" aria-label="Liens">
+				{others.map((l) =>
+					l.placeholder ? (
+						<div class="card card-placeholder" aria-disabled="true">
+							<span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" set:html={icons[l.icon]} /></span>
+							<span class="text">
+								<span class="title">{l.title}</span>
+								{l.subtitle && <span class="subtitle">{l.subtitle}</span>}
+							</span>
+							<span class="badge">Bientôt</span>
+						</div>
+					) : (
+						<a class="card" href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+							<span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" set:html={icons[l.icon]} /></span>
+							<span class="text">
+								<span class="title">{l.title}</span>
+								{l.subtitle && <span class="subtitle">{l.subtitle}</span>}
+							</span>
+							<span class="arrow" aria-hidden="true">→</span>
+						</a>
+					)
+				)}
+			</section>
+
+			<footer class="foot"><a href="/">bricefotzo.dev</a></footer>
+		</main>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg: #f6f7fb;
+		--bg-glow: rgba(66, 133, 244, 0.14);
+		--surface: #ffffff;
+		--surface-hover: #f0f4ff;
+		--border: #e3e6ee;
+		--text: #14161c;
+		--muted: #5c6270;
+		--accent: #1a73e8;
+		--accent-2: #34a853;
+		--accent-soft: rgba(26, 115, 232, 0.1);
+	}
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--bg: #0d0f14;
+			--bg-glow: rgba(66, 133, 244, 0.18);
+			--surface: #171a21;
+			--surface-hover: #1e2330;
+			--border: #2a2f3a;
+			--text: #eef0f4;
+			--muted: #9aa1ad;
+			--accent: #8ab4f8;
+			--accent-2: #81c995;
+			--accent-soft: rgba(138, 180, 248, 0.12);
+		}
+	}
+	* { box-sizing: border-box; }
+	html, body { margin: 0; }
+	body {
+		min-height: 100vh;
+		background: radial-gradient(60rem 30rem at 50% -10rem, var(--bg-glow), transparent 70%), var(--bg);
+		color: var(--text);
+		font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+		-webkit-font-smoothing: antialiased;
+	}
+</style>
+
+<style>
+	.wrap { max-width: 36rem; margin: 0 auto; padding: 3rem 1rem 2rem; }
+
+	.profile { text-align: center; margin-bottom: 2rem; }
+	.avatar {
+		width: 88px; height: 88px; margin: 0 auto 1rem;
+		border-radius: 50%;
+		display: grid; place-items: center;
+		font-weight: 700; font-size: 1.75rem; letter-spacing: 0.02em;
+		color: #fff;
+		background: linear-gradient(135deg, #1a73e8, #34a853);
+		box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--border);
+	}
+	h1 { font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+	.role { margin: 0.25rem 0 0; color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+	.bio { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.9rem; }
+
+	.socials { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+	.socials a {
+		width: 40px; height: 40px; display: grid; place-items: center;
+		border-radius: 50%; color: var(--muted);
+		border: 1px solid var(--border); background: var(--surface);
+		transition: color 0.15s, border-color 0.15s, transform 0.15s;
+	}
+	.socials a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+	.socials svg { width: 18px; height: 18px; }
+
+	.section-label {
+		margin: 0 0 0.6rem; font-size: 0.72rem; font-weight: 700;
+		letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+	}
+	.featured, .list { display: flex; flex-direction: column; gap: 0.65rem; }
+	.featured { margin-bottom: 1.75rem; }
+
+	.card {
+		display: flex; align-items: center; gap: 0.9rem;
+		padding: 0.9rem 1rem; min-height: 64px;
+		border-radius: 14px; border: 1px solid var(--border); background: var(--surface);
+		color: inherit; text-decoration: none;
+		transition: background 0.15s, border-color 0.15s, transform 0.15s;
+	}
+	a.card:hover { background: var(--surface-hover); border-color: var(--accent); transform: translateY(-1px); }
+	a.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+	.card-featured { border-color: var(--accent); background: linear-gradient(var(--accent-soft), var(--accent-soft)), var(--surface); }
+
+	.icon {
+		flex: none; width: 40px; height: 40px; border-radius: 10px;
+		display: grid; place-items: center;
+		background: var(--accent-soft); color: var(--accent);
+	}
+	.icon svg { width: 20px; height: 20px; }
+	.text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+	.title { font-weight: 600; font-size: 0.98rem; }
+	.subtitle { font-size: 0.83rem; color: var(--muted); line-height: 1.35; }
+	.arrow { flex: none; color: var(--muted); transition: transform 0.15s, color 0.15s; }
+	a.card:hover .arrow { transform: translateX(3px); color: var(--accent); }
+
+	.card-placeholder { opacity: 0.55; border-style: dashed; cursor: default; }
+	.card-placeholder .icon { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
+	.badge {
+		flex: none; font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.55rem;
+		border-radius: 999px; border: 1px solid var(--border); color: var(--muted);
+	}
+
+	.foot { text-align: center; margin-top: 2.5rem; font-size: 0.85rem; }
+	.foot a { color: var(--muted); text-decoration: none; }
+	.foot a:hover { color: var(--accent); }
+
+	@media (prefers-reduced-motion: reduce) {
+		* { transition: none !important; }
+	}
+</style>
