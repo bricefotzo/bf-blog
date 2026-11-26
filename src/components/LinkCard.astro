@@ -1,0 +1,36 @@
+---
+import { iconSvg } from '../data/icons';
+
+interface Props {
+	title: string;
+	subtitle?: string;
+	href: string;
+	icon: string;
+	featured?: boolean;
+	placeholder?: boolean;
+}
+
+const { title, subtitle, href, icon, featured, placeholder } = Astro.props;
+const external = /^https?:\/\//.test(href);
+const svg = `<svg viewBox="0 0 24 24" fill="currentColor">${iconSvg(icon)}</svg>`;
+---
+
+{placeholder || !href ? (
+	<div class:list={['card', 'card-placeholder', { 'card-featured': featured }]} aria-disabled="true">
+		<span class="icon" set:html={svg} />
+		<span class="text">
+			<span class="title">{title}</span>
+			{subtitle && <span class="subtitle">{subtitle}</span>}
+		</span>
+		<span class="badge">Bientôt</span>
+	</div>
+) : (
+	<a class:list={['card', { 'card-featured': featured }]} href={href} target={external ? '_blank' : undefined} rel="noopener">
+		<span class="icon" set:html={svg} />
+		<span class="text">
+			<span class="title">{title}</span>
+			{subtitle && <span class="subtitle">{subtitle}</span>}
+		</span>
+		<span class="arrow" aria-hidden="true">→</span>
+	</a>
+)}

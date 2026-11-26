@@ -1,20 +1,25 @@
 {
-  "featuredLabel": "Talk DevFest",
-  "links": [
+  "items": [
     {
-      "id": "devfest-medium",
-      "title": "DevFest : gcloud run compose up",
-      "subtitle": "L'article Medium du talk : déployer une stack multi-services GPU sur Cloud Run depuis Docker Compose",
-      "href": "https://medium.com/google-cloud/gcloud-run-compose-up-deploy-a-multi-service-gpu-stack-to-cloud-run-from-docker-compose-77d650b39972",
-      "icon": "medium",
-      "featured": true
+      "id": "section-devfest",
+      "type": "section",
+      "title": "Talk DevFest"
     },
     {
-      "id": "gcp-release-notes",
-      "title": "GCP Release Notes",
-      "subtitle": "Le projet GitHub : parcourir, filtrer et analyser les release notes Google Cloud",
-      "href": "https://github.com/bricefotzo/gcp-release-notes",
-      "icon": "github",
+      "id": "feedback",
+      "title": "Donner mon feedback sur le talk",
+      "subtitle": "2 minutes, ça m'aide beaucoup",
+      "href": "",
+      "icon": "feedback",
+      "featured": true,
+      "placeholder": true
+    },
+    {
+      "id": "devfest-medium",
+      "title": "Lire l'article : gcloud run compose up",
+      "subtitle": "Déployer une stack multi-services GPU sur Cloud Run depuis Docker Compose",
+      "href": "https://medium.com/google-cloud/gcloud-run-compose-up-deploy-a-multi-service-gpu-stack-to-cloud-run-from-docker-compose-77d650b39972",
+      "icon": "medium",
       "featured": true
     },
     {
@@ -25,80 +30,29 @@
       "icon": "linkedin"
     },
     {
-      "id": "slides",
-      "title": "Slides du talk DevFest",
-      "subtitle": "Le support de présentation",
-      "href": "",
-      "icon": "slides",
-      "placeholder": true
+      "id": "section-apps",
+      "type": "section",
+      "title": "Mes apps & projets"
     },
     {
-      "id": "replay",
-      "title": "Replay vidéo du talk",
-      "subtitle": "YouTube",
-      "href": "",
-      "icon": "youtube",
-      "placeholder": true
+      "id": "cv-sur-mesure",
+      "title": "CV sur mesure",
+      "subtitle": "Un CV adapté à chaque offre d'emploi, en moins d'une minute",
+      "href": "https://www.cv-sur-mesure.fr/",
+      "icon": "doc"
     },
     {
-      "id": "feedback",
-      "title": "Donner du feedback sur le talk",
-      "subtitle": "2 minutes, ça m'aide beaucoup",
-      "href": "",
-      "icon": "feedback",
-      "placeholder": true
-    },
-    {
-      "id": "speaker",
-      "title": "Profil speaker",
-      "subtitle": "Sessionize : mes autres talks",
-      "href": "",
-      "icon": "mic",
-      "placeholder": true
-    },
-    {
-      "id": "newsletter",
-      "title": "Newsletter",
-      "subtitle": "Data, Cloud Native & Backend",
-      "href": "",
-      "icon": "mail",
-      "placeholder": true
-    },
-    {
-      "id": "calendly",
-      "title": "Réserver un échange",
-      "subtitle": "Calendly : 30 min",
-      "href": "",
-      "icon": "calendar",
-      "placeholder": true
-    },
-    {
-      "id": "social",
-      "title": "X / Bluesky",
-      "subtitle": "Fil d'actu tech",
-      "href": "",
-      "icon": "at",
-      "placeholder": true
-    },
-    {
-      "id": "medium-profile",
-      "title": "Mes articles Medium",
-      "subtitle": "bricefotzo.medium.com",
-      "href": "https://bricefotzo.medium.com/",
-      "icon": "medium"
-    },
-    {
-      "id": "blog",
-      "title": "Le blog",
-      "subtitle": "bricefotzo.dev",
-      "href": "/",
+      "id": "ghom",
+      "title": "Ghom",
+      "subtitle": "Dictionnaires vivants des langues africaines",
+      "href": "https://ghom-african-languages.vercel.app/",
       "icon": "globe"
     },
     {
-      "id": "github",
-      "title": "GitHub",
-      "subtitle": "Tous mes projets open source",
-      "href": "https://github.com/bricefotzo",
+      "id": "gcp-release-notes",
+      "title": "GCP Release Notes",
+      "subtitle": "Parcourir, filtrer et analyser les release notes Google Cloud",
+      "href": "https://github.com/bricefotzo/gcp-release-notes",
       "icon": "github"
     }
   ]

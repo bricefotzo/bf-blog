@@ -2,16 +2,19 @@
 /**
  * Page "one link" style Linktree : https://bricefotzo.dev/links
  *
- * Les liens sont dans src/data/links.json.
- * Mode édition : https://bricefotzo.dev/links?edit
- *   ajouter (+), modifier, supprimer, réordonner, mettre à la une,
+ * Les liens et sections sont dans src/data/links.json, affichés dans l'ordre.
+ * Mode édition : bouton "Modifier" en bas de page (ou https://bricefotzo.dev/links?edit)
+ *   ajouter un lien ou une section, modifier, supprimer, réordonner, mettre en avant,
  *   puis "Publier" commite links.json sur GitHub (token gardé dans ton navigateur).
  */
 import data from '../data/links.json';
 import { icons, iconSvg } from '../data/icons';
+import LinkCard from '../components/LinkCard.astro';
 
+type Section = { id: string; type: 'section'; title: string };
 type Link = {
 	id: string;
+	type?: 'link';
 	title: string;
 	subtitle?: string;
 	href: string;
@@ -20,15 +23,12 @@ type Link = {
 	placeholder?: boolean;
 };
 
-const links = data.links as Link[];
-const featured = links.filter((l) => l.featured);
-const others = links.filter((l) => !l.featured);
+const items = data.items as (Section | Link)[];
 const socials = [
 	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/bricefotzo/', icon: 'linkedin' },
 	{ label: 'GitHub', href: 'https://github.com/bricefotzo', icon: 'github' },
 	{ label: 'Medium', href: 'https://bricefotzo.medium.com/', icon: 'medium' },
 ];
-const isExternal = (href: string) => /^https?:\/\//.test(href);
 const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 ---
 
@@ -60,51 +60,26 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 			</header>
 
 			<!-- Vue publique (rendue au build, sans JavaScript) -->
-			<div id="view">
-				{featured.length > 0 && (
-					<section class="stack featured" aria-label="À la une">
-						<p class="section-label">{data.featuredLabel}</p>
-						{featured.map((l) => (
-							<a class="card card-featured" href={l.href} target="_blank" rel="noopener">
-								<span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" set:html={iconSvg(l.icon)} /></span>
-								<span class="text">
-									<span class="title">{l.title}</span>
-									{l.subtitle && <span class="subtitle">{l.subtitle}</span>}
-								</span>
-								<span class="arrow" aria-hidden="true">→</span>
-							</a>
-						))}
-					</section>
+			<div id="view" class="stack">
+				{items.map((item) =>
+					item.type === 'section' ? (
+						<p class="section-label">{item.title}</p>
+					) : (
+						<LinkCard {...(item as Link)} />
+					)
 				)}
-				<section class="stack" aria-label="Liens">
-					{others.map((l) =>
-						l.placeholder || !l.href ? (
-							<div class="card card-placeholder" aria-disabled="true">
-								<span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" set:html={iconSvg(l.icon)} /></span>
-								<span class="text">
-									<span class="title">{l.title}</span>
-									{l.subtitle && <span class="subtitle">{l.subtitle}</span>}
-								</span>
-								<span class="badge">Bientôt</span>
-							</div>
-						) : (
-							<a class="card" href={l.href} target={isExternal(l.href) ? '_blank' : undefined} rel="noopener">
-								<span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" set:html={iconSvg(l.icon)} /></span>
-								<span class="text">
-									<span class="title">{l.title}</span>
-									{l.subtitle && <span class="subtitle">{l.subtitle}</span>}
-								</span>
-								<span class="arrow" aria-hidden="true">→</span>
-							</a>
-						)
-					)}
-				</section>
 			</div>
 
-			<!-- Mode édition (?edit), construit par le script ci-dessous -->
+			<!-- Mode édition, construit par le script ci-dessous -->
 			<div id="editor" hidden></div>
 
-			<footer class="foot"><a href="/">bricefotzo.dev</a></footer>
+			<footer class="foot">
+				<a href="/">bricefotzo.dev</a>
+				<a href="?edit" class="edit-link" id="edit-link" aria-label="Modifier les liens">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+					Modifier
+				</a>
+			</footer>
 		</main>
 
 		<dialog id="link-dialog" class="dlg">
@@ -120,7 +95,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 						<select name="icon"></select>
 					</span>
 				</label>
-				<label class="check"><input type="checkbox" name="featured" /> À la une (en haut de page)</label>
+				<label class="check"><input type="checkbox" name="featured" /> Mettre en avant (carte colorée)</label>
 				<label class="check"><input type="checkbox" name="placeholder" /> Placeholder (grisé, badge « Bientôt »)</label>
 				<div class="dlg-actions">
 					<button type="button" class="btn" data-close>Annuler</button>
@@ -157,6 +132,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 		<script>
 			type Link = {
 				id: string;
+				type?: 'link';
 				title: string;
 				subtitle?: string;
 				href: string;
@@ -164,7 +140,9 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 				featured?: boolean;
 				placeholder?: boolean;
 			};
-			type Data = { featuredLabel: string; links: Link[] };
+			type Section = { id: string; type: 'section'; title: string };
+			type Item = Link | Section;
+			type Data = { items: Item[] };
 			type Settings = { repo: string; branch: string };
 
 			const FILE_PATH = 'src/data/links.json';
@@ -221,25 +199,46 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 						el('span', '', 'Les changements restent en brouillon dans ce navigateur jusqu\'à « Publier ».'),
 					);
 
-					const labelRow = el('label', 'label-edit');
-					labelRow.append(el('span', 'section-label', 'Titre de la section « à la une »'));
-					const labelInput = document.createElement('input');
-					labelInput.value = state.featuredLabel;
-					labelInput.addEventListener('input', () => {
-						state.featuredLabel = labelInput.value;
+					const list = el('ol', 'stack edit-list');
+					state.items.forEach((item, i) =>
+						list.append(isSection(item) ? renderSection(item, i) : renderItem(item, i)),
+					);
+
+					const adds = el('div', 'add-row');
+					adds.append(
+						addButton('Ajouter un lien', () => openLinkDialog(null)),
+						addButton('Ajouter une section', () => {
+							const id = newId();
+							state.items.push({ id, type: 'section', title: 'Nouvelle section' });
+							persist();
+							const input = editor.querySelector<HTMLInputElement>(`[data-section="${id}"]`);
+							input?.focus();
+							input?.select();
+						}),
+					);
+
+					editor.append(banner, list, adds, renderToolbar());
+				}
+
+				function renderSection(section: Section, i: number) {
+					const li = el('li', 'edit-section');
+					const input = document.createElement('input');
+					input.value = section.title;
+					input.dataset.section = section.id;
+					input.setAttribute('aria-label', 'Titre de la section');
+					input.placeholder = 'Titre de la section';
+					input.addEventListener('input', () => {
+						section.title = input.value;
 						persist(false);
 					});
-					labelRow.append(labelInput);
-
-					const list = el('ol', 'stack edit-list');
-					state.links.forEach((link, i) => list.append(renderItem(link, i)));
-
-					const add = el('button', 'card add-card');
-					add.type = 'button';
-					add.innerHTML = '<span class="icon"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span><span class="title">Ajouter un lien</span>';
-					add.addEventListener('click', () => openLinkDialog(null));
-
-					editor.append(banner, labelRow, list, add, renderToolbar());
+					const actions = el('span', 'actions');
+					actions.append(
+						iconButton('Monter', 'M12 19V5M5 12l7-7 7 7', () => move(i, -1), i === 0),
+						iconButton('Descendre', 'M12 5v14M19 12l-7 7-7-7', () => move(i, 1), i === state.items.length - 1),
+						iconButton('Supprimer la section', 'M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6', () => remove(section), false, false, true),
+					);
+					li.append(input, actions);
+					return li;
 				}
 
 				function renderItem(link: Link, i: number) {
@@ -251,15 +250,15 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 					icon.innerHTML = svg(link.icon);
 					const text = el('span', 'text');
 					const title = el('span', 'title', link.title || '(sans titre)');
-					if (link.featured) title.prepend(el('span', 'pill', 'À la une'));
+					if (link.featured) title.prepend(el('span', 'pill', 'En avant'));
 					if (link.placeholder || !link.href) title.append(el('span', 'pill pill-muted', 'Bientôt'));
 					text.append(title, el('span', 'subtitle', link.href || 'Pas encore d\'URL'));
 
 					const actions = el('span', 'actions');
 					actions.append(
 						iconButton('Monter', 'M12 19V5M5 12l7-7 7 7', () => move(i, -1), i === 0),
-						iconButton('Descendre', 'M12 5v14M19 12l-7 7-7-7', () => move(i, 1), i === state.links.length - 1),
-						iconButton(link.featured ? 'Retirer de la une' : 'Mettre à la une',
+						iconButton('Descendre', 'M12 5v14M19 12l-7 7-7-7', () => move(i, 1), i === state.items.length - 1),
+						iconButton(link.featured ? 'Ne plus mettre en avant' : 'Mettre en avant',
 							'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z',
 							() => update(link.id, { featured: !link.featured }), false, link.featured),
 						iconButton('Modifier', 'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z', () => openLinkDialog(link.id)),
@@ -298,30 +297,31 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 
 				function move(i: number, delta: number) {
 					const j = i + delta;
-					if (j < 0 || j >= state.links.length) return;
-					[state.links[i], state.links[j]] = [state.links[j], state.links[i]];
+					if (j < 0 || j >= state.items.length) return;
+					[state.items[i], state.items[j]] = [state.items[j], state.items[i]];
 					persist();
 				}
 
 				function update(id: string, patch: Partial<Link>) {
-					state.links = state.links.map((l) => (l.id === id ? clean({ ...l, ...patch }) : l));
+					state.items = state.items.map((item) => (item.id === id && !isSection(item) ? clean({ ...item, ...patch }) : item));
 					persist();
 				}
 
-				function remove(link: Link) {
-					if (!confirm(`Supprimer « ${link.title} » ?`)) return;
-					const index = state.links.findIndex((l) => l.id === link.id);
-					state.links.splice(index, 1);
+				function remove(item: Item) {
+					const what = isSection(item) ? `la section « ${item.title} »` : `« ${item.title} »`;
+					if (!confirm(`Supprimer ${what} ?`)) return;
+					const index = state.items.findIndex((x) => x.id === item.id);
+					state.items.splice(index, 1);
 					persist();
-					toast(`« ${link.title} » supprimé`, 'Annuler', () => {
-						state.links.splice(index, 0, link);
+					toast(`${what.charAt(0).toUpperCase()}${what.slice(1)} supprimé${isSection(item) ? 'e' : ''}`, 'Annuler', () => {
+						state.items.splice(index, 0, item);
 						persist();
 					});
 				}
 
 				function openLinkDialog(id: string | null) {
 					editingId = id;
-					const link = id ? state.links.find((l) => l.id === id)! : { id: '', title: '', subtitle: '', href: '', icon: 'link' };
+					const link = id ? (state.items.find((x) => x.id === id) as Link) : { id: '', title: '', subtitle: '', href: '', icon: 'link' };
 					$('#link-dialog-title').textContent = id ? 'Modifier le lien' : 'Ajouter un lien';
 					field('title').value = link.title;
 					field('subtitle').value = link.subtitle ?? '';
@@ -357,7 +357,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 						update(editingId, values);
 						toast('Lien modifié');
 					} else {
-						state.links.push(clean({ id: newId(), ...values } as Link));
+						state.items.push(clean({ id: newId(), ...values } as Link));
 						persist();
 						toast('Lien ajouté');
 					}
@@ -441,7 +441,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 				}
 				function loadDraft(): Data | null {
 					const d = safeParse(store.get(KEYS.draft));
-					return d && Array.isArray(d.links) ? d : null;
+					return d && Array.isArray(d.items) ? d : null;
 				}
 				function isDirty() {
 					return JSON.stringify(state) !== JSON.stringify(published);
@@ -455,6 +455,14 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 				function svg(name: string) {
 					const body = (icons[name] ?? icons.link).svg;
 					return `<svg viewBox="0 0 24 24" fill="currentColor">${body}</svg>`;
+				}
+				function addButton(label: string, onClick: () => void) {
+					const b = el('button', 'card add-card');
+					b.type = 'button';
+					b.innerHTML = '<span class="icon"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span>';
+					b.append(el('span', 'title', label));
+					b.addEventListener('click', onClick);
+					return b;
 				}
 				function iconButton(label: string, path: string, onClick: () => void, disabled = false, active = false, danger = false) {
 					const b = document.createElement('button');
@@ -490,6 +498,9 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 				}
 			}
 
+			function isSection(item: Item): item is Section {
+				return (item as Section).type === 'section';
+			}
 			function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls = '', text?: string) {
 				const node = document.createElement(tag);
 				if (cls) node.className = cls;
@@ -606,7 +617,6 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 		letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
 	}
 	.stack { display: flex; flex-direction: column; gap: 0.65rem; margin: 0; padding: 0; list-style: none; }
-	.featured { margin-bottom: 1.75rem; }
 	.card {
 		display: flex; align-items: center; gap: 0.9rem;
 		padding: 0.9rem 1rem; min-height: 64px;
@@ -634,7 +644,12 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 		flex: none; font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.55rem;
 		border-radius: 999px; border: 1px solid var(--border); color: var(--muted);
 	}
-	.foot { text-align: center; margin-top: 2.5rem; font-size: 0.85rem; }
+	.foot { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2.5rem; font-size: 0.85rem; }
+	.edit-link { display: inline-flex; align-items: center; gap: 0.3rem; opacity: 0.7; }
+	.edit-link svg { width: 13px; height: 13px; }
+	body.editing .edit-link { display: none; }
+	#view .section-label { margin: 1.4rem 0 0; }
+	#view .section-label:first-child { margin-top: 0; }
 	.foot a { color: var(--muted); text-decoration: none; }
 	.foot a:hover { color: var(--accent); }
 
@@ -645,8 +660,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 		background: var(--accent-soft); border: 1px solid var(--accent); font-size: 0.85rem;
 	}
 	.edit-banner strong { color: var(--accent); }
-	.label-edit { display: block; margin-bottom: 1rem; }
-	.label-edit input, .dlg input, .dlg select {
+	.dlg input, .dlg select {
 		width: 100%; padding: 0.55rem 0.7rem; border-radius: 8px; font: inherit;
 		border: 1px solid var(--border); background: var(--surface); color: var(--text);
 	}
@@ -678,8 +692,18 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 	.icon-btn.is-active { color: var(--warn); }
 	.icon-btn.is-danger:hover:not(:disabled) { color: var(--danger); border-color: var(--danger); }
 	.icon-btn:disabled { opacity: 0.3; cursor: default; }
+	.edit-section { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; }
+	.edit-section:first-child { margin-top: 0; }
+	.edit-section input {
+		flex: 1; min-width: 0; padding: 0.4rem 0.5rem; border-radius: 8px; font: inherit;
+		font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+		color: var(--muted); background: transparent; border: 1px dashed var(--border);
+	}
+	.edit-section input:hover, .edit-section input:focus { border-color: var(--accent); color: var(--text); }
+	.add-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: 0.9rem; }
+	@media (max-width: 26rem) { .add-row { grid-template-columns: 1fr; } }
 	.add-card {
-		width: 100%; margin-top: 0.65rem; cursor: pointer; border-style: dashed; border-width: 2px;
+		width: 100%; cursor: pointer; border-style: dashed; border-width: 2px;
 		color: var(--accent); background: transparent; justify-content: center;
 	}
 	.add-card:hover { background: var(--accent-soft); border-color: var(--accent); }
